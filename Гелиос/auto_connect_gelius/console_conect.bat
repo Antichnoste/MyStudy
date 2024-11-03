@@ -1,0 +1,1 @@
+start "" "_dev/putty.exe" -ssh -P 2222 s466113@se.ifmo.ru -pw nsIY}5379 -L 25565:localhost:25565 -C

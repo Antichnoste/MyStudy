@@ -1,0 +1,1 @@
+start "" "_dev/WinSCP.exe" sftp://s466113:nsIY}5379@se.ifmo.ru:2222
