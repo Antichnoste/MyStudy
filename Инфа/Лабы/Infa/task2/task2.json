@@ -1,3 +1,0 @@
-{
-"from_xml": { "group_id" : "P3110", "Day_1": { "date" : "Wednesday, 13 Nov 2024 UTC +03:00", "lesson_1": { "name" : "Programming", "teacher" : "Gavrilov Anton Valeryevich", "place" : "Room Актовый зал (1216/0 (усл)), ul.Lomonosova, d.9, lit. M", "time" : "08:20-09:50"} }, "Day_2": { "date" : "Saturday, 16 Nov 2024 UTC +03:00", "lesson_1": { "name" : "Mathematical analysis (advanced level)", "teacher" : "Kholodova Svetlana Evgenyevna", "place" : "Zoom", "time" : "08:20-09:50"}, "lesson_2": { "name" : null, "teacher" : "Kholodova Svetlana Evgenyevna", "place" : "Zoom", "time" : "10:00-11:30"} } } 
-}
