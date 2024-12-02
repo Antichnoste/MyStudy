@@ -1,7 +1,7 @@
 import re
 
-f = open("/home/anti/Учёба/Infa/Лаба 4/task3/task3.xml",'r', encoding="utf-8").read()
-out = open("/home/anti/Учёба/Infa/Лаба 4/task3/task3.json", 'w', encoding='utf-8')
+f = open("/home/anti/Учёба/Infa//task3/task3.xml",'r', encoding="utf-8").read()
+out = open("/home/anti/Учёба/Infa/task3/task3.json", 'w', encoding='utf-8')
 
 f = f.replace('\n', '').strip()
 f = re.sub(r'>( +)<', '><', f)
