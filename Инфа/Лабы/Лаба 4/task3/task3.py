@@ -1,7 +1,7 @@
 import re
 
-f = open("/home/anti/Учёба/Infa/task3/task3.xml",'r', encoding="utf-8").read()
-out = open("/home/anti/Учёба/Infa/task3/task3.json", 'w', encoding='utf-8')
+f = open("/home/anti/Учёба/Infa/Лаба 4/task3/task3.xml",'r', encoding="utf-8").read()
+out = open("/home/anti/Учёба/Infa/Лаба 4/task3/task3.json", 'w', encoding='utf-8')
 
 f = f.replace('\n', '').strip()
 f = re.sub(r'>( +)<', '><', f)
@@ -120,6 +120,8 @@ def correct(dik):
             ind = i
             flag = True
             i += 1
+        else:
+            i+=1
     if cur != '':
         if dik[ind].get('#text') != None:
             dik[ind]['#text'][0] += cur 
@@ -127,6 +129,16 @@ def correct(dik):
             dik[ind]['#text'] = [cur]
     return dik
 
+def corect_str(s):
+    i = 0
+    while i < (len(s)):
+        if s[i] == '\\' or s[i] == '"':
+            s = s[:i] + "\\" + s[i:]
+            i+=2
+        else:
+            i+=1
+    return s
+            
 def fun(dik):
     global id,f
     message = False
@@ -144,6 +156,7 @@ def fun(dik):
             id += 1
             if len(dik) > 1:
                 dik = correct(dik)
+
             if node in dik[-1]:
                 dik[-1][node] = fun(dik[-1][node])
             else:
@@ -161,7 +174,7 @@ def fun(dik):
             k = id
             while f[id] != '<':
                 id += 1
-            dik.append(f[k:id].replace('"', '\\"'))
+            dik.append(corect_str(f[k:id]))#.replace('\','\\'))
     return dik
 
 f = head_del(f)
@@ -171,10 +184,34 @@ f = atributs_convert(f)
 
 dik = fun([])
 
-def dfs(v, tab):
+def correrct_dict(dik):
+    if len(dik) == 1:
+        return dik
+    else:
+        for i in range(len(dik)-1):
+            for j in range(i+1,len(dik)):
+                for cur in dik[i]:
+                    if cur in dik[j]:
+                        dik[i][cur].extend(dik[j][cur])
+                        dik[j].pop(cur)
+
+        i = 0
+        while i < len(dik):
+            if not dik[i]:
+                dik.pop(i)
+            else:
+                i+=1
+        return dik 
+
+
+# ex = [{'name': ['Mathematical analysis (advanced level)']}, {'name': ['null']}, {'aaa': ['aaaaa']}, {'aaa': [' a ']}]
+# print(correrct_dict(ex))
+
+def dfs(v, tab,flag):
     k = -1
     for i in v:
         k += 1
+
         if type(v[i][0]) != dict:
             if (len(v[i]) > 1):
                 out.write('\t' * tab + '"' + i + '" : [\n')
@@ -183,7 +220,7 @@ def dfs(v, tab):
                         out.write('\t' * (tab+1) + '"' + v[i][id] + '"\n')
                     else:
                         out.write('\t' * (tab+1) + '"' + v[i][id] + '",\n')
-                if k == len(v)-1:
+                if k == len(v)-1 and flag == True:
                     out.write('\t' * tab + ']\n')
                 else:
                     out.write('\t' * tab + '],\n')
@@ -195,7 +232,10 @@ def dfs(v, tab):
                 out.write('\t'*tab + '"' + i + '" : "' + str(v[i][0]) + '",\n')
         else:
             out.write('\t'*tab + '"' + i + '" : {\n')
-            dfs(v[i][0], tab+1) 
+
+            v[i] = correrct_dict(v[i])
+            for l in range(len(v[i])):
+                dfs(v[i][l], tab+1, True if l == len(v[i])-1 else False) 
 
             if k == len(v)-1:
                 out.write('\t' * tab + '}\n')
@@ -204,5 +244,5 @@ def dfs(v, tab):
 
 
 out.write('{\n')
-dfs(dik[0],1)
+dfs(dik[0],1,False)
 out.write('}')
