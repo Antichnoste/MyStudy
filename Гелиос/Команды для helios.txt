@@ -7,5 +7,5 @@ Password	nsIY}5379
 3.javac *.java --> java * -- Компилятция файла
 4.jar -c -f *.jar -e Hello Hello.class - сборка jar-архива
   java -jar hello.jar - запуск jar-архива
-5. scp -P 2222 s466113@se.ifmo.ru:/home/studs/s466113/ОПД/[какой-то файл] .
+5. scp -P 2222 s466113@se.ifmo.ru:/home/studs/s466113/[путь до файла]/[сам файл] [путь куда надо сохранить файл]
  
