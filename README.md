@@ -94,7 +94,29 @@
 ---
 
 ### **6. Веб-разработка**
-*(Раздел в разработке)*
+Лабораторные работы по веб-технологиям и фреймворкам (каждая лаба - отдельный git репозиторий)
+
+- **web1** - https://github.com/Antichnoste/web1.git
+  - Базовые концепции веб-разработки
+  
+- **web2** - https://github.com/Antichnoste/web2.git
+  - Продвинутые техники и инструменты
+  
+- **web3** - https://github.com/Antichnoste/web3.git
+  - Фреймворки и архитектура
+  
+- **web4** - https://github.com/Antichnoste/web4.git
+  - Комплексный проект с интеграцией всех техник
+
+**Примечание**: Каждая лаба добавлена как git submodule. Для клонирования репозитория используйте:
+```bash
+git clone --recursive https://github.com/Antichnoste/MyStudy.git
+```
+
+Для обновления submodules в уже клонированном репозитории:
+```bash
+git submodule update --remote
+```
 
 ---
 
