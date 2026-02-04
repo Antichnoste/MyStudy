@@ -1,0 +1,12 @@
+﻿12. Определить экранные 'дуэты': Найти 10 пар актеров, которые чаще всего снимались вместе.
+---------------------------------------------------------------------------
+Adam Sandler & Allen Covert: 12 фильмов
+Desmond Llewelyn & Lois Maxwell: 12 фильмов
+Ben Stiller & Owen Wilson: 11 фильмов
+Adam Sandler & Jackie Sandler: 11 фильмов
+Bernard Lee & Lois Maxwell: 11 фильмов
+Chris Miller & Conrad Vernon: 10 фильмов
+Adam Sandler & Rob Schneider: 10 фильмов
+Adam Sandler & Sadie Sandler: 10 фильмов
+Mickie McGowan & Sherry Lynn: 9 фильмов
+Bill Hader & Kristen Wiig: 9 фильмов

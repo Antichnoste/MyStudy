@@ -1,0 +1,14 @@
+﻿5. Получить список всех уникальных департаментов (department) съемочной группы.
+---------------------------------------------------------------------------
+Actors
+Art
+Camera
+Costume & Make-Up
+Crew
+Directing
+Editing
+Lighting
+Production
+Sound
+Visual Effects
+Writing

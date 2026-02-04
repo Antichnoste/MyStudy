@@ -1,0 +1,14 @@
+﻿19. Выявить 'скрытое влияние': Ранжировать департаменты по среднему Cast Size.
+---------------------------------------------------------------------------
+Crew: 35,02 (Avg Cast)
+Lighting: 33,95 (Avg Cast)
+Visual Effects: 32,84 (Avg Cast)
+Costume & Make-Up: 32,67 (Avg Cast)
+Art: 31,80 (Avg Cast)
+Camera: 30,27 (Avg Cast)
+Sound: 30,12 (Avg Cast)
+Editing: 28,67 (Avg Cast)
+Production: 28,63 (Avg Cast)
+Directing: 25,86 (Avg Cast)
+Writing: 25,16 (Avg Cast)
+Actors: 21,00 (Avg Cast)
