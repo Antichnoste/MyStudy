@@ -1,0 +1,17 @@
+D:\ЯПы\7 практика\bin\Debug\net8.0\7 практика.exe
+D:\ЯПы\7 практика\bin\Debug\net8.0\7 практика.deps.json
+D:\ЯПы\7 практика\bin\Debug\net8.0\7 практика.runtimeconfig.json
+D:\ЯПы\7 практика\bin\Debug\net8.0\7 практика.dll
+D:\ЯПы\7 практика\bin\Debug\net8.0\7 практика.pdb
+D:\ЯПы\7 практика\bin\Debug\net8.0\Python.Runtime.dll
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.csproj.AssemblyReference.cache
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.GeneratedMSBuildEditorConfig.editorconfig
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.AssemblyInfoInputs.cache
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.AssemblyInfo.cs
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.csproj.CoreCompileInputs.cache
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.csproj.Up2Date
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.dll
+D:\ЯПы\7 практика\obj\Debug\net8.0\refint\7 практика.dll
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.pdb
+D:\ЯПы\7 практика\obj\Debug\net8.0\7 практика.genruntimeconfig.cache
+D:\ЯПы\7 практика\obj\Debug\net8.0\ref\7 практика.dll
