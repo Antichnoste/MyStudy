@@ -10,3 +10,6 @@
 [submodule "3 веб/web4"]
 	path = 3 веб/web4
 	url = https://github.com/Antichnoste/web4.git
+[submodule "3-4 физика/3 сем"]
+	path = 3-4 физика/3 сем
+	url = https://github.com/Antichnoste/Physics.git
