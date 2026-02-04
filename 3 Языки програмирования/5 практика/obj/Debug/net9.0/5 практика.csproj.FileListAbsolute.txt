@@ -1,0 +1,14 @@
+d:\ЯПы\5 практика\bin\Debug\net9.0\5 практика.exe
+D:\ЯПы\5 практика\bin\Debug\net9.0\5 практика.deps.json
+D:\ЯПы\5 практика\bin\Debug\net9.0\5 практика.runtimeconfig.json
+d:\ЯПы\5 практика\bin\Debug\net9.0\5 практика.dll
+d:\ЯПы\5 практика\bin\Debug\net9.0\5 практика.pdb
+d:\ЯПы\5 практика\obj\Debug\net9.0\5 практика.GeneratedMSBuildEditorConfig.editorconfig
+d:\ЯПы\5 практика\obj\Debug\net9.0\5 практика.AssemblyInfoInputs.cache
+d:\ЯПы\5 практика\obj\Debug\net9.0\5 практика.AssemblyInfo.cs
+d:\ЯПы\5 практика\obj\Debug\net9.0\5 практика.csproj.CoreCompileInputs.cache
+d:\ЯПы\5 практика\obj\Debug\net9.0\5 практика.dll
+d:\ЯПы\5 практика\obj\Debug\net9.0\refint\5 практика.dll
+d:\ЯПы\5 практика\obj\Debug\net9.0\5 практика.pdb
+D:\ЯПы\5 практика\obj\Debug\net9.0\5 практика.genruntimeconfig.cache
+D:\ЯПы\5 практика\obj\Debug\net9.0\ref\5 практика.dll

@@ -1,0 +1,14 @@
+d:\ЯПы\HelloVsCode\bin\Debug\net8.0\HelloVsCode.exe
+D:\ЯПы\HelloVsCode\bin\Debug\net8.0\HelloVsCode.deps.json
+D:\ЯПы\HelloVsCode\bin\Debug\net8.0\HelloVsCode.runtimeconfig.json
+d:\ЯПы\HelloVsCode\bin\Debug\net8.0\HelloVsCode.dll
+d:\ЯПы\HelloVsCode\bin\Debug\net8.0\HelloVsCode.pdb
+d:\ЯПы\HelloVsCode\obj\Debug\net8.0\HelloVsCode.GeneratedMSBuildEditorConfig.editorconfig
+d:\ЯПы\HelloVsCode\obj\Debug\net8.0\HelloVsCode.AssemblyInfoInputs.cache
+d:\ЯПы\HelloVsCode\obj\Debug\net8.0\HelloVsCode.AssemblyInfo.cs
+d:\ЯПы\HelloVsCode\obj\Debug\net8.0\HelloVsCode.csproj.CoreCompileInputs.cache
+d:\ЯПы\HelloVsCode\obj\Debug\net8.0\HelloVsCode.dll
+d:\ЯПы\HelloVsCode\obj\Debug\net8.0\refint\HelloVsCode.dll
+d:\ЯПы\HelloVsCode\obj\Debug\net8.0\HelloVsCode.pdb
+D:\ЯПы\HelloVsCode\obj\Debug\net8.0\HelloVsCode.genruntimeconfig.cache
+D:\ЯПы\HelloVsCode\obj\Debug\net8.0\ref\HelloVsCode.dll
