@@ -1,0 +1,7 @@
+﻿8. Найти фильмы, где в актерском составе есть и 'Brad Pitt', и 'George Clooney'.
+---------------------------------------------------------------------------
+Ocean's Twelve
+Ocean's Eleven
+Ocean's Thirteen
+Burn After Reading
+Confessions of a Dangerous Mind
