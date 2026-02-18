@@ -1,14 +1,14 @@
-[submodule "3 веб/web1"]
-	path = 3 веб/web1
+[submodule "3 Веб/web1"]
+	path = 3 Веб/web1
 	url = https://github.com/Antichnoste/web1.git
-[submodule "3 веб/web2"]
-	path = 3 веб/web2
+[submodule "3 Веб/web2"]
+	path = 3 Веб/web2
 	url = https://github.com/Antichnoste/web2.git
-[submodule "3 веб/web3"]
+[submodule "3 Веб/web3"]
 	path = 3 Веб/web3
 	url = https://github.com/Antichnoste/web3.git
-[submodule "3 веб/web4"]
-	path = 3 веб/web4
+[submodule "3 Веб/web4"]
+	path = 3 Веб/web4
 	url = https://github.com/Antichnoste/web4.git
 [submodule "3-4 физика/3 сем"]
 	path = 3-4 физика/3 сем
