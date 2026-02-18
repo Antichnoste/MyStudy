@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="server">
+    <output-path>$PROJECT_DIR$/out/artifacts/server</output-path>
+    <root id="archive" name="Lab6_2.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/resources/server/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Lab6_2" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/log4j-core-2.24.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/log4j-api-2.24.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/opencsv-2.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
