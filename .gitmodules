@@ -5,7 +5,7 @@
 	path = 3 веб/web2
 	url = https://github.com/Antichnoste/web2.git
 [submodule "3 веб/web3"]
-	path = 3 веб/web3
+	path = 3 Веб/web3
 	url = https://github.com/Antichnoste/web3.git
 [submodule "3 веб/web4"]
 	path = 3 веб/web4
