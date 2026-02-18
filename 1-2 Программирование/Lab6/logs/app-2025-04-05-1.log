@@ -1,0 +1,223 @@
+2025-04-05 00:00:04 [main] INFO  Server - Сервер успешно запущен!
+2025-04-05 00:00:04 [main] INFO  Server - ----------------------------------------
+2025-04-05 00:00:04 [main] INFO  Server - Файл успешно считан, коллекция загружена
+2025-04-05 00:00:04 [main] INFO  Server - ----------------------------------------
+2025-04-05 00:00:04 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 00:00:26 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 00:00:26 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 00:00:26 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 00:00:26 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 00:00:26 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 00:00:26 [main] INFO  Server - Команда show выполнена!
+2025-04-05 00:00:26 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 00:00:26 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 00:00:41 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 00:00:41 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 00:00:41 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 00:00:41 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 00:00:46 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 00:00:46 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 00:00:46 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 00:00:46 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 00:00:47 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 00:00:47 [main] INFO  Server - Команда history выполнена!
+2025-04-05 00:00:47 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 00:00:47 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 00:00:49 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 00:00:49 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 00:00:49 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 00:00:49 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:17:25 [main] INFO  Server - Сервер успешно запущен!
+2025-04-05 20:17:25 [main] INFO  Server - ----------------------------------------
+2025-04-05 20:17:25 [main] INFO  Server - Файл успешно считан, коллекция загружена
+2025-04-05 20:17:25 [main] INFO  Server - ----------------------------------------
+2025-04-05 20:17:25 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 20:17:37 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:17:37 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:17:37 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:17:37 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:17:37 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:17:37 [main] INFO  Server - Команда show выполнена!
+2025-04-05 20:17:37 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:17:37 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:17:41 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:17:41 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:17:41 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:17:41 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:18:11 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:18:11 [main] INFO  Server - Команда add выполнена!
+2025-04-05 20:18:11 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:18:11 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:18:16 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:18:16 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:18:16 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:18:16 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:18:26 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:18:26 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:18:26 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:18:26 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:18:27 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:18:27 [main] INFO  Server - Команда average_of_oscars_count выполнена!
+2025-04-05 20:18:27 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:18:27 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:24:03 [main] INFO  Server - Сервер успешно запущен!
+2025-04-05 20:24:03 [main] INFO  Server - ----------------------------------------
+2025-04-05 20:24:03 [main] INFO  Server - Файл успешно считан, коллекция загружена
+2025-04-05 20:24:03 [main] INFO  Server - ----------------------------------------
+2025-04-05 20:24:03 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 20:24:19 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:24:19 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:24:19 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:24:19 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:24:19 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:24:19 [main] INFO  Server - Команда show выполнена!
+2025-04-05 20:24:19 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:24:19 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:24:21 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:24:21 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:24:21 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:24:21 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:24:21 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:24:21 [main] INFO  Server - Команда info выполнена!
+2025-04-05 20:24:21 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:24:21 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:28:39 [main] INFO  Server - Сервер успешно запущен!
+2025-04-05 20:28:39 [main] INFO  Server - ----------------------------------------
+2025-04-05 20:28:39 [main] INFO  Server - Файл успешно считан, коллекция загружена
+2025-04-05 20:28:39 [main] INFO  Server - ----------------------------------------
+2025-04-05 20:28:39 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 20:29:17 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:29:17 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:29:17 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:29:17 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:29:17 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:29:17 [main] INFO  Server - Команда show выполнена!
+2025-04-05 20:29:17 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:29:17 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:29:41 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:29:41 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:29:41 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:29:41 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:29:56 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:29:56 [main] INFO  Server - Команда remove_greater выполнена!
+2025-04-05 20:29:56 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:29:56 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:29:59 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:29:59 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 20:29:59 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:29:59 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 20:29:59 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 20:29:59 [main] INFO  Server - Команда show выполнена!
+2025-04-05 20:29:59 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 20:29:59 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 21:05:33 [main] INFO  Server - Сервер успешно запущен!
+2025-04-05 21:05:33 [main] INFO  Server - ----------------------------------------
+2025-04-05 21:05:33 [main] INFO  Server - Файл успешно считан, коллекция загружена
+2025-04-05 21:05:33 [main] INFO  Server - ----------------------------------------
+2025-04-05 21:05:33 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:05:45 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 21:05:45 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 21:05:45 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 21:05:45 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 21:05:45 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 21:05:45 [main] INFO  Server - Команда show выполнена!
+2025-04-05 21:05:45 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 21:05:45 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 21:07:56 [main] INFO  Server - Сервер успешно запущен!
+2025-04-05 21:07:56 [main] ERROR Server - -----------------------
+2025-04-05 21:07:56 [main] ERROR Server - Ошибка нахождения файла
+java.io.FileNotFoundException: D:\All\Огузки (Отказано в доступе)
+	at java.base/java.io.FileInputStream.open0(Native Method) ~[?:?]
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216) ~[?:?]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157) ~[?:?]
+	at java.base/java.util.Scanner.<init>(Scanner.java:639) ~[?:?]
+	at server.managers.DumpManager.readCollection(DumpManager.java:119) [Lab6_2/:?]
+	at server.managers.CollectionManager.loadCollection(CollectionManager.java:151) [Lab6_2/:?]
+	at server.Main.main(Main.java:30) [Lab6_2/:?]
+2025-04-05 21:07:56 [main] ERROR Server - -----------------------
+2025-04-05 21:07:56 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:08:50 [main] INFO  Server - Сервер успешно запущен!
+2025-04-05 21:08:50 [main] ERROR Server - -----------------------
+2025-04-05 21:08:50 [main] ERROR Server - Ошибка нахождения файла
+java.io.FileNotFoundException: D:\All\Огузки (Отказано в доступе)
+	at java.base/java.io.FileInputStream.open0(Native Method) ~[?:?]
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216) ~[?:?]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157) ~[?:?]
+	at java.base/java.util.Scanner.<init>(Scanner.java:639) ~[?:?]
+	at server.managers.DumpManager.readCollection(DumpManager.java:119) [Lab6_2/:?]
+	at server.managers.CollectionManager.loadCollection(CollectionManager.java:151) [Lab6_2/:?]
+	at server.Main.main(Main.java:30) [Lab6_2/:?]
+2025-04-05 21:08:50 [main] ERROR Server - -----------------------
+2025-04-05 21:09:14 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:09:25 [main] INFO  Server - Сервер успешно запущен!
+2025-04-05 21:09:44 [main] ERROR Server - -----------------------
+2025-04-05 21:09:44 [main] ERROR Server - Ошибка нахождения файла
+java.io.FileNotFoundException: D:\All\Огузки (Отказано в доступе)
+	at java.base/java.io.FileInputStream.open0(Native Method) ~[?:?]
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216) ~[?:?]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157) ~[?:?]
+	at java.base/java.util.Scanner.<init>(Scanner.java:639) ~[?:?]
+	at server.managers.DumpManager.readCollection(DumpManager.java:119) [Lab6_2/:?]
+	at server.managers.CollectionManager.loadCollection(CollectionManager.java:151) [Lab6_2/:?]
+	at server.Main.main(Main.java:30) [Lab6_2/:?]
+2025-04-05 21:09:44 [main] ERROR Server - -----------------------
+2025-04-05 21:10:15 [main] ERROR Server - -----------------------
+2025-04-05 21:10:15 [main] ERROR Server - Ошибка нахождения файла
+java.io.FileNotFoundException: D:\All\Огузки (Отказано в доступе)
+	at java.base/java.io.FileInputStream.open0(Native Method) ~[?:?]
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216) ~[?:?]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157) ~[?:?]
+	at java.base/java.util.Scanner.<init>(Scanner.java:639) ~[?:?]
+	at server.managers.DumpManager.readCollection(DumpManager.java:119) [Lab6_2/:?]
+	at server.managers.CollectionManager.loadCollection(CollectionManager.java:151) [Lab6_2/:?]
+	at server.Main.main(Main.java:29) [Lab6_2/:?]
+2025-04-05 21:10:15 [main] ERROR Server - -----------------------
+2025-04-05 21:11:37 [main] ERROR Server - -----------------------
+2025-04-05 21:11:38 [main] ERROR Server - Ошибка нахождения файла
+java.io.FileNotFoundException: D:\All\Огузки (Отказано в доступе)
+	at java.base/java.io.FileInputStream.open0(Native Method) ~[?:?]
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216) ~[?:?]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157) ~[?:?]
+	at java.base/java.util.Scanner.<init>(Scanner.java:639) ~[?:?]
+	at server.managers.DumpManager.readCollection(DumpManager.java:119) [Lab6_2/:?]
+	at server.managers.CollectionManager.loadCollection(CollectionManager.java:151) [Lab6_2/:?]
+	at server.Main.main(Main.java:29) [Lab6_2/:?]
+2025-04-05 21:14:42 [main] ERROR Server - -----------------------
+2025-04-05 21:21:29 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:22:26 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:24:24 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:25:27 [main] ERROR Server - -----------------------
+2025-04-05 21:25:27 [main] ERROR Server - Ошибка нахождения файла
+2025-04-05 21:25:27 [main] ERROR Server - -----------------------
+2025-04-05 21:25:27 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:31:50 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:34:43 [main] ERROR Server - -----------------------
+2025-04-05 21:34:43 [main] ERROR Server - Ошибка нахождения файла
+2025-04-05 21:34:43 [main] ERROR Server - -----------------------
+2025-04-05 21:34:43 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:35:02 [main] ERROR Server - -----------------------
+2025-04-05 21:35:02 [main] ERROR Server - Ошибка нахождения файла
+2025-04-05 21:35:02 [main] ERROR Server - -----------------------
+2025-04-05 21:35:55 [main] ERROR Server - -----------------------
+2025-04-05 21:35:55 [main] ERROR Server - Ошибка нахождения файла
+2025-04-05 21:39:12 [main] ERROR Server - -----------------------
+2025-04-05 21:39:12 [main] ERROR Server - Ошибка доступа к файлу
+2025-04-05 21:39:12 [main] ERROR Server - -----------------------
+2025-04-05 21:39:12 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:41:03 [main] ERROR Server - -----------------------
+2025-04-05 21:41:03 [main] ERROR Server - Ошибка доступа к файлу
+2025-04-05 21:41:03 [main] ERROR Server - -----------------------
+2025-04-05 21:41:03 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:41:03 [main] INFO  Server - Менеджер сетевого взаимодействия инициализирован!
+2025-04-05 21:42:44 [main] ERROR Server - -----------------------
+2025-04-05 21:42:44 [main] ERROR Server - Ошибка доступа к файлу
+2025-04-05 21:42:44 [main] ERROR Server - -----------------------
+2025-04-05 21:42:44 [main] INFO  Server - Сервер запущен. IP: 172.29.128.1, порт: 12345
+2025-04-05 21:43:14 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 21:43:14 [main] INFO  Server - Команда add_to_history выполнена!
+2025-04-05 21:43:14 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 21:43:14 [main] INFO  Server - Отправлен ответ серверу!
+2025-04-05 21:43:14 [main] INFO  Server - Команда успешно десериализована!
+2025-04-05 21:43:14 [main] INFO  Server - Команда show выполнена!
+2025-04-05 21:43:14 [main] INFO  Server - Ответ успешно сериализован!
+2025-04-05 21:43:14 [main] INFO  Server - Отправлен ответ серверу!
