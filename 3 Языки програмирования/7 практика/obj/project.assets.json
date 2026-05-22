@@ -818,11 +818,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ЯПы\\7 практика\\7 практика.csproj",
+      "projectUniqueName": "D:\\MyStudy\\3 Языки програмирования\\7 практика\\7 практика.csproj",
       "projectName": "7 практика",
-      "projectPath": "D:\\ЯПы\\7 практика\\7 практика.csproj",
+      "projectPath": "D:\\MyStudy\\3 Языки програмирования\\7 практика\\7 практика.csproj",
       "packagesPath": "C:\\Users\\anti\\.nuget\\packages\\",
-      "outputPath": "D:\\ЯПы\\7 практика\\obj\\",
+      "outputPath": "D:\\MyStudy\\3 Языки програмирования\\7 практика\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\anti\\AppData\\Roaming\\NuGet\\NuGet.Config"

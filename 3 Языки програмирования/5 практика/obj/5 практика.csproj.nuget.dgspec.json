@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ЯПы\\5 практика\\5 практика.csproj": {}
+    "D:\\MyStudy\\3 Языки програмирования\\5 практика\\5 практика.csproj": {}
   },
   "projects": {
-    "D:\\ЯПы\\5 практика\\5 практика.csproj": {
+    "D:\\MyStudy\\3 Языки програмирования\\5 практика\\5 практика.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ЯПы\\5 практика\\5 практика.csproj",
+        "projectUniqueName": "D:\\MyStudy\\3 Языки програмирования\\5 практика\\5 практика.csproj",
         "projectName": "5 практика",
-        "projectPath": "D:\\ЯПы\\5 практика\\5 практика.csproj",
+        "projectPath": "D:\\MyStudy\\3 Языки програмирования\\5 практика\\5 практика.csproj",
         "packagesPath": "C:\\Users\\anti\\.nuget\\packages\\",
-        "outputPath": "D:\\ЯПы\\5 практика\\obj\\",
+        "outputPath": "D:\\MyStudy\\3 Языки програмирования\\5 практика\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\anti\\AppData\\Roaming\\NuGet\\NuGet.Config"

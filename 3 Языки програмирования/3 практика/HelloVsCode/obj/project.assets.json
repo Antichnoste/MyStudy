@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ЯПы\\HelloVsCode\\HelloVsCode.csproj",
+      "projectUniqueName": "D:\\MyStudy\\3 Языки програмирования\\3 практика\\HelloVsCode\\HelloVsCode.csproj",
       "projectName": "HelloVsCode",
-      "projectPath": "D:\\ЯПы\\HelloVsCode\\HelloVsCode.csproj",
+      "projectPath": "D:\\MyStudy\\3 Языки програмирования\\3 практика\\HelloVsCode\\HelloVsCode.csproj",
       "packagesPath": "C:\\Users\\anti\\.nuget\\packages\\",
-      "outputPath": "D:\\ЯПы\\HelloVsCode\\obj\\",
+      "outputPath": "D:\\MyStudy\\3 Языки програмирования\\3 практика\\HelloVsCode\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\anti\\AppData\\Roaming\\NuGet\\NuGet.Config"

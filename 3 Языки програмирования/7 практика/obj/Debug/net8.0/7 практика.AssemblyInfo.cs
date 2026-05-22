@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("7 практика")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1df9e703e0d80e55129be43e2845e60afd4d55c")]
 [assembly: System.Reflection.AssemblyProductAttribute("7 практика")]
 [assembly: System.Reflection.AssemblyTitleAttribute("7 практика")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

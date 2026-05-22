@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Tk+iAUdt8rw=",
+  "dgSpecHash": "EIFMXi4jZ90=",
   "success": true,
-  "projectFilePath": "D:\\ЯПы\\7 практика\\7 практика.csproj",
+  "projectFilePath": "D:\\MyStudy\\3 Языки програмирования\\7 практика\\7 практика.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\anti\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\anti\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
