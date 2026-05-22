@@ -1,3 +1,4 @@
+#Курс по Веб-програмироваанию
 [submodule "3 Веб/web1"]
 	path = 3 Веб/web1
 	url = git@github.com:Antichnoste/web1.git
@@ -10,6 +11,14 @@
 [submodule "3 Веб/web4"]
 	path = 3 Веб/web4
 	url = git@github.com:Antichnoste/web4.git
+
+#Курс по физике
 [submodule "3-4 Физика/3 сем"]
 	path = 3-4 Физика/3 сем
 	url = git@github.com:Antichnoste/Physics_3.git
+[submodule "3-4 Физика/4 сем/Лабы"]
+	path = 3-4 Физика/4 сем/Лабы
+	url = git@github.com:Antichnoste/Physics_4.git
+[submodule "3-4 Физика/4 сем/Проект"]
+	path = 3-4 Физика/4 сем/Проект
+	url = git@github.com:Antichnoste/Physics_Project.git
