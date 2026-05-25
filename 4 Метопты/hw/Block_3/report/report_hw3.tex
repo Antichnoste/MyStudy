@@ -1,0 +1,576 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+}
+
+\title{Лабораторная работа \No\,6 \\ Домашнее задание, блок \No\,3 (ДЗ3.1) \\
+\large Отбор значимых признаков: градиентный бустинг + UFSACO}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Постановка задачи}
+
+Согласно ДЗ3.1, мы воспроизводим пайплайн из \texttt{UFSACO.ipynb} на
+собственном наборе данных. Для задачи регрессии нам необходимо:
+\begin{enumerate}
+  \item с помощью градиентного бустинга (используем как чёрный ящик)
+        определить значимые признаки для моделирования целевого;
+  \item с помощью метода муравьиной колонии (UFSACO~--- unsupervised
+        feature selection) отобрать признаки без использования
+        целевого;
+  \item обеспечить, чтобы пересечение двух множеств признаков было не
+        меньше четырёх элементов; при необходимости варьировать
+        гиперпараметры ACO.
+\end{enumerate}
+
+Формально: пусть $\mathcal{F} = \{f_1, \dots, f_d\}$~--- полное множество
+признаков, $y$~--- целевой признак. Каждый метод возвращает
+подмножество
+\[
+  \mathcal{S}_{\text{GB}} \subseteq \mathcal{F}, \quad
+  \mathcal{S}_{\text{ACO}} \subseteq \mathcal{F}, \quad
+  |\mathcal{S}_{\text{GB}}| = |\mathcal{S}_{\text{ACO}}| = k,
+\]
+где $k$~--- число отбираемых признаков; требуется
+\[
+  |\mathcal{S}_{\text{GB}} \cap \mathcal{S}_{\text{ACO}}| \geq 4,
+  \qquad 7 \leq k \leq \lfloor d/2 \rfloor.
+\]
+Здесь $d$~--- общее число признаков ($d=24$ в нашем случае),
+$\lfloor \cdot \rfloor$~--- целая часть.
+
+\section{Описание датасета}
+
+\textbf{Источник:} <<Car Price Prediction Multiple Linear Regression>>,
+Kaggle (\href{https://www.kaggle.com/datasets}{kaggle.com/datasets}),
+датасет компании Geely Auto, опубликован в~2019~г.
+
+\textbf{Предметная область.} Китайская автомобильная компания Geely
+Auto планирует выход на рынок США и хочет понять, какие конструктивные
+и потребительские характеристики автомобилей определяют их цену в
+американском сегменте. Консалтинговое агентство собрало срез по~205
+моделям автомобилей различных производителей. Целевой признак~---
+розничная цена в долларах.
+
+\textbf{Размер.} $n = 205$ объектов, $d = 24$ признака~+~целевой
+\texttt{price} (всего 25 числовых столбцов после очистки).
+
+\textbf{Целевой признак.} В качестве целевого мы выбрали
+$y = \texttt{price}$~--- розничную цену автомобиля в долларах США.
+Это вещественный признак, диапазон значений \$5118--45400, среднее
+$\bar{y} \approx 13\,277$, стандартное отклонение $\sigma_y \approx 7\,989$.
+Выбор обусловлен постановкой исходной задачи на Kaggle (предсказание
+цены автомобиля на американском рынке для компании Geely Auto)~---
+именно цена является той переменной, факторы влияния на которую мы
+хотим понять, что точно соответствует типу задачи в ДЗ
+(\emph{регрессия}).
+
+\textbf{Признаки} (после предобработки, см. раздел~\ref{sec:prep}):
+\begin{itemize}\setlength\itemsep{0pt}
+  \item \emph{Идентификация:} \texttt{carbrand} (марка авто, 22
+        уникальных значения, label-encoded).
+  \item \emph{Категориальные характеристики кузова и трансмиссии:}
+        \texttt{fueltype}, \texttt{aspiration}, \texttt{doornumber},
+        \texttt{carbody}, \texttt{drivewheel}, \texttt{enginelocation},
+        \texttt{enginetype}, \texttt{fuelsystem}~--- закодированы
+        целочисленно.
+  \item \emph{Геометрия:} \texttt{wheelbase}, \texttt{carlength},
+        \texttt{carwidth}, \texttt{carheight}, \texttt{curbweight}.
+  \item \emph{Силовая установка:} \texttt{cylindernumber},
+        \texttt{enginesize}, \texttt{boreratio}, \texttt{stroke},
+        \texttt{compressionratio}, \texttt{horsepower},
+        \texttt{peakrpm}.
+  \item \emph{Топливная экономичность:} \texttt{citympg},
+        \texttt{highwaympg}.
+  \item \emph{Рейтинг страхового риска:} \texttt{symboling}.
+  \item \emph{Целевой:} \texttt{price} (диапазон \$5118--45400).
+\end{itemize}
+
+Пропусков и дубликатов в данных нет.
+
+\subsection{Предобработка}\label{sec:prep}
+
+Исходный файл \texttt{CarPrice\_Assignment.xls} (фактически CSV
+с расширением \texttt{.xls}) приведён к чисто числовой матрице
+$X \in \mathbb{R}^{n \times d}$:
+\begin{enumerate}\setlength\itemsep{0pt}
+  \item удалили служебный \texttt{car\_ID};
+  \item из \texttt{CarName} извлекли только марку
+        (\texttt{carbrand}); устранили опечатки в названиях марок
+        (\texttt{maxda}$\to$\texttt{mazda},
+         \texttt{porcshce}$\to$\texttt{porsche},
+         \texttt{toyouta}$\to$\texttt{toyota},
+         \texttt{vokswagen}/\texttt{vw}$\to$\texttt{volkswagen});
+  \item словесные числа в \texttt{doornumber} и
+        \texttt{cylindernumber} (\texttt{two}, \texttt{four}, \ldots)
+        перевели в целые;
+  \item к восьми категориальным признакам применили label-encoding
+        (целые от~0 до $k-1$); one-hot не использовали, чтобы остаться
+        в рамках $d=24$ признаков и сохранить верхнюю границу отбора
+        $\lfloor 24/2 \rfloor = 12$.
+\end{enumerate}
+Результат сохранили в \texttt{CarPrice\_clean.csv}.
+
+Каждый признак $f_j$ затем приводится к диапазону $[0,1]$ преобразованием
+Min--Max:
+\begin{equation}
+  \tilde{x}_{ij} \;=\; \frac{x_{ij} - \min_i x_{ij}}{\max_i x_{ij} - \min_i x_{ij}},
+  \label{eq:minmax}
+\end{equation}
+где $x_{ij}$~--- значение признака $f_j$ у $i$-го объекта,
+$\tilde{x}_{ij}$~--- его масштабированный аналог.
+
+\subsection{Краткий разведочный анализ}
+
+Линейная зависимость каждого признака с целевым оценена через выборочную
+корреляцию Пирсона:
+\begin{equation}
+  r(f_j, y) \;=\; \frac{\sum_{i=1}^{n}\bigl(x_{ij} - \bar{x}_j\bigr)\bigl(y_i - \bar{y}\bigr)}
+                       {\sqrt{\sum_{i=1}^{n}\bigl(x_{ij}-\bar{x}_j\bigr)^2}
+                        \cdot \sqrt{\sum_{i=1}^{n}\bigl(y_i-\bar{y}\bigr)^2}},
+  \label{eq:pearson}
+\end{equation}
+где $n$~--- число объектов, $x_{ij}$~--- значение $j$-го признака
+у $i$-го объекта, $y_i$~--- значение целевого, $\bar{x}_j$ и
+$\bar{y}$~--- их средние.
+
+Десять наибольших по модулю корреляций с целевым:
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+\textbf{Признак} & \textbf{$r$ с price} \\
+\midrule
+enginesize        & $+0.874$ \\
+curbweight        & $+0.835$ \\
+horsepower        & $+0.808$ \\
+carwidth          & $+0.759$ \\
+cylindernumber    & $+0.718$ \\
+highwaympg        & $-0.698$ \\
+citympg           & $-0.686$ \\
+carlength         & $+0.683$ \\
+drivewheel        & $+0.578$ \\
+wheelbase         & $+0.578$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Видим, что доминируют <<размерные>> признаки (геометрия~+~масса~+~мощность
+двигателя), сильно скоррелированные между собой ($|r| > 0.7$). Этот
+факт критически важен~--- он определяет поведение UFSACO ниже.
+Расход топлива \texttt{highwaympg}/\texttt{citympg} коррелирует с ценой
+отрицательно (чем больше миль на галлон, тем меньше/легче машина, тем
+дешевле).
+
+Гистограммы распределений сохранены в \texttt{hist\_hw3.png},
+тепловая карта корреляций~--- в \texttt{corr\_heatmap\_hw3.png}.
+
+\section{Метод 1: Gradient Boosting}
+
+\subsection{Модель}
+Используется \texttt{sklearn.ensemble.GradientBoostingRegressor}.
+Модель строит аддитивную композицию из $M$ регрессионных деревьев $h_m$:
+\begin{equation}
+  \hat{F}_M(\mathbf{x}) \;=\; F_0 \;+\; \nu \sum_{m=1}^{M} h_m(\mathbf{x}),
+  \label{eq:gb}
+\end{equation}
+где $\mathbf{x}$~--- вектор признаков объекта,
+$F_0$~--- начальное предсказание (среднее по $y$),
+$\nu \in (0,1]$~--- темп обучения (learning rate),
+$M$~--- число деревьев,
+$h_m$~--- $m$-е дерево, обучаемое на градиенте функции потерь от
+предсказаний предыдущей композиции $\hat{F}_{m-1}$.
+
+В качестве функции потерь используется квадратичная:
+\begin{equation}
+  L(y, \hat{F}) \;=\; \tfrac{1}{2}\bigl(y - \hat{F}\bigr)^2,
+\end{equation}
+тогда антиградиент совпадает с остатком $y - \hat{F}$, и на каждой
+итерации дерево $h_m$ приближает именно остаток предыдущей модели.
+
+\subsection{Гиперпараметры}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+\texttt{n\_estimators} ($M$)      & 300  \\
+\texttt{max\_depth}               & 4    \\
+\texttt{min\_samples\_split}      & 10   \\
+\texttt{learning\_rate} ($\nu$)   & 0.01 \\
+\texttt{random\_state}            & 42   \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Значимость признаков}
+Для каждого признака $f_j$ значимость определяется как нормированная
+сумма уменьшений функции потерь во всех узлах всех деревьев, где этот
+признак использован для расщепления:
+\begin{equation}
+  I(f_j) \;=\; \frac{1}{M}\sum_{m=1}^{M}\sum_{t \in \mathcal{T}_m^{(j)}}
+                 \omega_t \cdot \Delta L_t,
+  \label{eq:fimp}
+\end{equation}
+где $\mathcal{T}_m^{(j)}$~--- множество узлов $m$-го дерева, где
+расщепление сделано по признаку $f_j$, $\omega_t = n_t/n$~--- доля
+объектов, попавших в узел $t$, $\Delta L_t$~--- уменьшение функции
+потерь в этом узле, $n_t$~--- размер выборки узла, $n$~--- общий размер
+обучающей выборки.
+
+После обучения качество на обучающей выборке:
+\[
+  R^2 \;=\; 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}
+        \;=\; 0.9813,
+\]
+где $\hat{y}_i$~--- предсказание модели для $i$-го объекта.
+
+Сортируем $I(f_j)$ по убыванию и берём top-$k$ при $k=12$ (см.
+раздел~\ref{sec:n}):
+
+\begin{center}
+\begin{tabular}{cl}
+\toprule
+\textbf{Ранг} & \textbf{Признак} \\
+\midrule
+1  & enginesize \\
+2  & curbweight \\
+3  & highwaympg \\
+4  & horsepower \\
+5  & carlength \\
+6  & carwidth \\
+7  & carbrand \\
+8  & wheelbase \\
+9  & stroke \\
+10 & compressionratio \\
+11 & peakrpm \\
+12 & fuelsystem \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+См. также \texttt{gb\_importance\_hw3.png}.
+
+\section{Метод 2: UFSACO (муравьиная колония)}
+
+\subsection{Идея}
+Используется реализация из \texttt{UFSACO.ipynb} без изменений. Алгоритм
+\emph{unsupervised}: целевой признак не участвует в построении графа.
+
+Признаки рассматриваются как вершины полного неориентированного графа
+$G = (\mathcal{F}, E)$. Каждому ребру $(i,j)$ присваивается вес, равный
+\emph{косинусной близости} векторов признаков:
+\begin{equation}
+  s(f_i, f_j) \;=\; \frac{\langle \mathbf{x}^{(i)}, \mathbf{x}^{(j)} \rangle}
+                          {\|\mathbf{x}^{(i)}\| \cdot \|\mathbf{x}^{(j)}\|},
+  \label{eq:cos}
+\end{equation}
+где $\mathbf{x}^{(i)} \in \mathbb{R}^n$~--- столбец масштабированной
+матрицы признаков, соответствующий признаку $f_i$,
+$\langle \cdot, \cdot \rangle$~--- скалярное произведение, $\|\cdot\|$~---
+евклидова норма. Высокое $s(f_i,f_j)$ означает высокую избыточность
+этой пары.
+
+Каждой вершине $j$ соответствует уровень феромона $\tau_j \geq 0$,
+изначально $\tau_j = \tau_0$.
+
+\subsection{Шаг муравья}
+Если $k$-й муравей находится в вершине $i$ и $V_k$~--- множество уже
+посещённых им вершин, то <<желательность>> следующего перехода в
+вершину $j \in \mathcal{F} \setminus (V_k \cup \{i\})$:
+\begin{equation}
+  \eta_{ij} \;=\; \frac{\tau_j}{\bigl(s(f_i, f_j) + \varepsilon\bigr)^{\alpha}},
+  \label{eq:eta}
+\end{equation}
+где $\tau_j$~--- текущий уровень феромона на вершине $j$,
+$s(f_i, f_j)$~--- косинусная близость (\ref{eq:cos}),
+$\alpha > 0$~--- параметр относительной важности
+<<некоррелированности>>,
+$\varepsilon$~--- малая константа для численной устойчивости.
+Чем меньше $s(f_i,f_j)$ и больше $\tau_j$, тем выгоднее переход.
+
+С вероятностью $q_0 \in [0,1]$ (\texttt{EXPLOITATION\_PROB}) муравей
+переходит детерминированно (exploitation):
+\begin{equation}
+  j^* \;=\; \arg\max_{j \notin V_k \cup \{i\}} \eta_{ij},
+\end{equation}
+иначе (exploration)~--- стохастически с вероятностями,
+пропорциональными $\eta_{ij}$:
+\begin{equation}
+  P(j \mid i, V_k) \;=\;
+    \frac{\eta_{ij}}{\sum_{\ell \notin V_k \cup \{i\}} \eta_{i\ell}}.
+  \label{eq:explore}
+\end{equation}
+
+\subsection{Обновление феромона}
+После того как все $N_{\text{ants}}$ муравьёв сделали по
+$N_{\text{steps}}$ шагов внутри одной эпохи, для каждой вершины
+$j$ известно количество визитов $v_j$. Феромон обновляется по правилу:
+\begin{equation}
+  \tau_j \;\leftarrow\; (1 - \rho)\,\tau_j \;+\; \frac{v_j}{\sum_{\ell} v_\ell},
+  \label{eq:tau}
+\end{equation}
+где $\rho \in (0,1]$~--- коэффициент испарения (\texttt{RO}),
+$v_j$~--- число визитов вершины $j$ за текущую эпоху,
+$\sum_\ell v_\ell$~--- общее число визитов (нормирует прирост).
+
+\subsection{Финальный отбор}
+Внешний цикл повторяется $\text{NC}_{\max}$ эпох. По окончании
+ранжируем вершины по $\tau_j$ и берём $k$ с наибольшими значениями:
+\begin{equation}
+  \mathcal{S}_{\text{ACO}} \;=\; \mathrm{Top}_k\!\bigl\{\tau_1, \dots, \tau_d\bigr\}.
+\end{equation}
+
+\subsection{Замечание о масштабировании}
+В ноутбуке применён \texttt{MinMaxScaler}~(\ref{eq:minmax}), но в нашем
+датасете несколько закодированных категориальных признаков
+(\texttt{enginelocation}, \texttt{aspiration}, \texttt{doornumber})
+почти константы~--- одно значение встречается у $\geq 90\%$ объектов.
+После Min--Max их вектор $\mathbf{x}^{(j)}$ близок к нулевому,
+норма $\|\mathbf{x}^{(j)}\| \to 0$, и косинусная близость
+$s(f_i,f_j)$ становится численно неустойчивой~--- такие признаки
+получают завышенные $\eta_{ij}$ и захватывают весь top-$k$.
+
+Чтобы устранить эту патологию, мы дополнительно центрируем матрицу
+признаков преобразованием Z-score:
+\begin{equation}
+  z_{ij} \;=\; \frac{x_{ij} - \bar{x}_j}{\sigma_j},
+  \label{eq:zscore}
+\end{equation}
+где $\bar{x}_j$ и $\sigma_j$~--- выборочное среднее и стандартное
+отклонение $j$-го признака. На центрированных векторах формула
+(\ref{eq:cos}) переходит в коэффициент корреляции Пирсона~--- ту же
+меру~(\ref{eq:pearson}), что используется для EDA. Сам алгоритм UFSACO
+при этом остаётся без изменений.
+
+\subsection{Гиперпараметры}\label{sec:hp}
+Дефолтные значения из ноутбука дали слишком малое пересечение с GB
+(см. раздел~\ref{sec:tune}). Финальные значения:
+
+\begin{center}
+\begin{tabular}{ll r}
+\toprule
+Обозначение & Параметр & Значение \\
+\midrule
+$\text{NC}_{\max}$        & число эпох (\texttt{NC\_MAX})            & 50   \\
+$N_{\text{steps}}$        & шагов в эпохе (\texttt{N\_STEPS})        & 10   \\
+$N_{\text{ants}}$         & число муравьёв (\texttt{N\_ANTS})        & 25   \\
+$\tau_0$                  & начальный феромон (\texttt{INIT\_PHER.}) & 0.2  \\
+$\rho$                    & коэф.\,испарения (\texttt{RO})           & 0.1  \\
+$q_0$                     & вероятность exploitation                 & 0.7  \\
+$\alpha$                  & вес <<некоррелированности>>              & 0.2  \\
+$k$                       & число отбираемых признаков               & 12   \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Устойчивость: 5 запусков}
+
+Чтобы оценить разброс, мы запустили алгоритм 5 раз; финальный
+список~--- 12 признаков, чаще всего попадавших в top-12 (по частоте
+появлений). Если обозначить $c_j$~--- число запусков, в которых
+признак $f_j$ попал в top-$k$, то:
+\begin{equation}
+  \mathcal{S}_{\text{ACO}}^{\text{final}}
+    \;=\; \mathrm{Top}_k\bigl\{c_1, \dots, c_d\bigr\}.
+\end{equation}
+
+Итоговый top-12 UFSACO:
+\texttt{enginetype, stroke, cylindernumber, doornumber, carbody,
+peakrpm, symboling, boreratio, aspiration, highwaympg, horsepower,
+compressionratio}.
+
+\section{Сравнение и пересечение}
+
+\begin{longtable}{lcc}
+\toprule
+\textbf{Признак} & \textbf{GB} & \textbf{UFSACO} \\
+\midrule
+\endhead
+aspiration        &              & $\checkmark$ \\
+boreratio         &              & $\checkmark$ \\
+carbody           &              & $\checkmark$ \\
+carbrand          & $\checkmark$ &              \\
+carlength         & $\checkmark$ &              \\
+carwidth          & $\checkmark$ &              \\
+\textbf{compressionratio} & $\checkmark$ & $\checkmark$ \\
+curbweight        & $\checkmark$ &              \\
+cylindernumber    &              & $\checkmark$ \\
+doornumber        &              & $\checkmark$ \\
+enginesize        & $\checkmark$ &              \\
+enginetype        &              & $\checkmark$ \\
+fuelsystem        & $\checkmark$ &              \\
+\textbf{highwaympg} & $\checkmark$ & $\checkmark$ \\
+\textbf{horsepower} & $\checkmark$ & $\checkmark$ \\
+\textbf{peakrpm}    & $\checkmark$ & $\checkmark$ \\
+\textbf{stroke}     & $\checkmark$ & $\checkmark$ \\
+symboling         &              & $\checkmark$ \\
+wheelbase         & $\checkmark$ &              \\
+\bottomrule
+\end{longtable}
+
+\textbf{Пересечение:}
+\[
+  \mathcal{S}_{\text{GB}} \cap \mathcal{S}_{\text{ACO}}
+    = \{\texttt{compressionratio}, \texttt{highwaympg}, \texttt{horsepower},
+        \texttt{peakrpm}, \texttt{stroke}\}.
+\]
+Мощность пересечения
+$|\mathcal{S}_{\text{GB}} \cap \mathcal{S}_{\text{ACO}}| = 5 \geq 4$~---
+требование выполнено.
+
+Дополнительно мы оценили <<согласованность>> двух методов через
+коэффициент Жаккара:
+\begin{equation}
+  J(\mathcal{S}_{\text{GB}}, \mathcal{S}_{\text{ACO}}) \;=\;
+    \frac{|\mathcal{S}_{\text{GB}} \cap \mathcal{S}_{\text{ACO}}|}
+         {|\mathcal{S}_{\text{GB}} \cup \mathcal{S}_{\text{ACO}}|}
+    \;=\; \frac{5}{19} \;\approx\; 0.263,
+\end{equation}
+где $|\cdot|$~--- мощность множества. Значение $J \in [0,1]$;
+$J = 1$ означает полное совпадение, $J = 0$~--- непересечение.
+
+\subsection{Выбор $k$}\label{sec:n}
+По правилу ЛР, $7 \leq k \leq \lfloor 24/2 \rfloor = 12$.
+Эксперименты при $k = 7,\,10,\,12$:
+
+\begin{center}
+\begin{tabular}{ccl}
+\toprule
+$k$ & $|\mathcal{S}_{\text{GB}} \cap \mathcal{S}_{\text{ACO}}|$ & комментарий \\
+\midrule
+7   & 0--2 & пересечение мало даже при тюнинге \\
+10  & 2    & лучше, но не до~4 \\
+\textbf{12} & \textbf{5} & требование выполнено \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Подбор гиперпараметров ACO}\label{sec:tune}
+С дефолтами ноутбука ($\text{NC}_{\max}=3$, $N_{\text{steps}}=4$,
+$N_{\text{ants}}=5$, $\alpha=1$, \texttt{MinMaxScaler}) при $k=7$
+пересечение составило~2. Причина в характере данных: GB-top~--- единый
+кластер сильно скоррелированных <<размерных>> признаков
+(\texttt{enginesize}, \texttt{curbweight}, \texttt{carlength},
+\texttt{carwidth}, \texttt{horsepower}), а UFSACO по дизайну, согласно
+формуле~(\ref{eq:eta}), штрафует за высокое $s(f_i,f_j)$~--- то есть
+выбирает по одному представителю каждого кластера. Чтобы поднять
+перекрытие, мы:
+\begin{enumerate}\setlength\itemsep{0pt}
+  \item увеличили $k$ до~12 (тогда GB захватывает не только <<размерный>>
+        кластер, а UFSACO~--- больше представителей других кластеров);
+  \item понизили $\alpha$ с~1.0 до~0.2; согласно~(\ref{eq:eta}), при
+        $\alpha \to 0$ знаменатель $\to 1$ и штраф за сходство
+        ослабевает, что позволяет ACO выбирать несколько членов одного
+        кластера;
+  \item увеличили число эпох ($\text{NC}_{\max}$: 3$\to$50), шагов
+        ($N_{\text{steps}}$: 4$\to$10) и муравьёв ($N_{\text{ants}}$:
+        5$\to$25) для стабилизации феромона $\tau$ в (\ref{eq:tau});
+  \item понизили испарение $\rho$ с~0.2 до~0.1, чтобы накопленный опыт
+        переходов не <<вымывался>> слишком быстро (множитель $1-\rho$ в
+        (\ref{eq:tau})).
+\end{enumerate}
+
+\section{Интерпретация результатов}
+
+Пять общих признаков логично интерпретируются:
+\begin{itemize}\setlength\itemsep{0pt}
+  \item \texttt{horsepower}~--- мощность; ключевой драйвер цены, оба
+        метода согласны.
+  \item \texttt{highwaympg}~--- экономичность; обратно связана с
+        мощностью, но не полностью~--- UFSACO видит в ней
+        самостоятельный кластер.
+  \item \texttt{peakrpm}~--- характеристика оборотистости двигателя,
+        слабо коррелирует с размерным кластером.
+  \item \texttt{stroke}~--- ход поршня, конструктивная характеристика
+        двигателя, малая корреляция со всем остальным.
+  \item \texttt{compressionratio}~--- степень сжатия, аналогично~---
+        отдельный кластер.
+\end{itemize}
+
+Признаки <<размерного>> кластера (\texttt{enginesize},
+\texttt{curbweight}, \texttt{carlength}, \texttt{carwidth},
+\texttt{carbrand}, \texttt{wheelbase}) попали только в GB-top:
+ACO выбирает максимум одного представителя такого кластера и переключается
+на менее коррелированные признаки. Это нормальное и предсказуемое
+поведение unsupervised-метода~--- его задача согласно~(\ref{eq:eta})
+найти \emph{разнообразное} подпространство, а не максимально
+предсказательное.
+
+\section{Воспроизводимость}
+
+\textbf{Код:} \texttt{ufsaco\_hw3.py} (один файл, запуск
+\texttt{python ufsaco\_hw3.py}).
+
+\textbf{Зависимости:} \texttt{numpy, pandas, matplotlib, seaborn,
+scikit-learn}.
+
+\textbf{Артефакты после запуска:}
+\begin{itemize}\setlength\itemsep{0pt}
+  \item \texttt{CarPrice\_clean.csv}~--- предобработанный датасет;
+  \item \texttt{eda\_describe\_hw3.csv}~--- описательные статистики;
+  \item \texttt{hist\_hw3.png}~--- гистограммы;
+  \item \texttt{corr\_with\_price\_hw3.csv},
+        \texttt{corr\_heatmap\_hw3.png}~--- корреляции;
+  \item \texttt{gb\_importance\_hw3.png}~--- важности GB;
+  \item \texttt{sim\_top10\_hw3.csv}, \texttt{sim\_bot10\_hw3.csv}~---
+        самые похожие/различные пары признаков по cos-similarity;
+  \item \texttt{results\_hw3.json}~--- финальные результаты в
+        машиночитаемом виде.
+\end{itemize}
+
+\section{Выводы}
+
+\begin{enumerate}\setlength\itemsep{0pt}
+  \item Датасет CarPrice (205~$\times$~24) полностью удовлетворяет
+        требованиям ДЗ к составу, размеру и году публикации.
+  \item Градиентный бустинг согласно~(\ref{eq:gb}) достигает
+        $R^2 = 0.98$ на обучении и ожидаемо выделяет <<размерный>>
+        кластер как наиболее информативный для прогноза цены.
+  \item UFSACO ведёт себя как unsupervised-метод: согласно
+        формуле~(\ref{eq:eta}) выбирает \emph{взаимно различные}
+        признаки, а не самые предсказательные. На датасете с одним
+        доминирующим скоррелированным кластером это естественно
+        расходится с GB.
+  \item После настройки гиперпараметров и выбора $k=12$ мы получили
+        пересечение из 5~признаков
+        (\texttt{compressionratio, highwaympg, horsepower, peakrpm,
+        stroke}), что превосходит порог в~4 признака; коэффициент
+        Жаккара $J \approx 0.263$.
+\end{enumerate}
+
+\appendix
+\section{Top-12 GB по убыванию важности}
+
+\begin{center}
+\includegraphics[width=0.75\linewidth]{gb_importance_hw3.png}
+\end{center}
+
+\section{Корреляционная матрица}
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{corr_heatmap_hw3.png}
+\end{center}
+
+\end{document}

@@ -1,0 +1,19 @@
+# Visual Studio / VS Code
+.vs/
+*.user
+*.suo
+
+# Binaries and Output
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# Custom folders to ignore (like the results from your parser!)
+"4 практика".sln
