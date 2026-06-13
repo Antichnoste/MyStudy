@@ -1,0 +1,85 @@
+.app-header {
+  background: #2c3e50;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.student-info h3 { margin: 0; font-size: 1.2rem; }
+.student-info p { margin: 0; font-size: 0.9rem; opacity: 0.9; }
+
+.btn-logout, .btn-submit, .btn-clear {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+  color: white;
+}
+
+.btn-logout { background: #e74c3c; }
+.btn-submit { background: #27ae60; }
+.btn-clear { background: #c0392b; }
+
+.btn-logout:hover, .btn-submit:hover, .btn-clear:hover {
+  opacity: 0.9;
+}
+
+.graph-canvas {
+  background: white; 
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: crosshair;
+}
+
+.table-wrapper {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
+  border: 1px solid #ddd;
+
+  max-height: 500px;
+
+  overflow-y: auto;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table th, .results-table td {
+  padding: 12px;
+  border: 1px solid #eee;
+  text-align: center;
+  color: #333;
+}
+
+.results-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.results-table td.hit {
+  color: #27ae60;
+  font-weight: 800;
+  text-shadow: 0 0 1px rgba(39, 174, 96, 0.2);
+}
+
+.results-table td.miss {
+  color: #c0392b;
+  font-weight: 800;
+  text-shadow: 0 0 1px rgba(192, 57, 43, 0.2);
+}

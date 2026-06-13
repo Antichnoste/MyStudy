@@ -1,0 +1,12 @@
+phantom:
+  address: host.docker.internal:8080
+  connection_test: false
+  load_profile:
+    load_type: rps
+    schedule: step(10, 50, 10, 20s)
+  ammofile: ammo.txt
+  ammo_type: phantom
+console:
+  enabled: true
+telegraf:
+  enabled: false

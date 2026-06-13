@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+<!--Бин для отображения настроек на index.xhtml-->
+    <managed-bean>
+        <managed-bean-name>settings</managed-bean-name>
+        <managed-bean-class>org.example.beans.SettingsBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+<!-->Бин для JPA, для отображения сущности на бд-->
+    <managed-bean>
+        <managed-bean-name>jpaService</managed-bean-name>
+        <managed-bean-class>org.example.service.JpaService</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+<!--Бин для хранения точек-->
+    <managed-bean>
+        <managed-bean-name>results</managed-bean-name>
+        <managed-bean-class>org.example.beans.ResultsBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>jpa</property-name>
+            <value>#{jpaService}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>maxRows</property-name>
+            <value>2000</value>
+        </managed-property>
+    </managed-bean>
+
+<!--Бин для отправки формы-->
+    <managed-bean>
+        <managed-bean-name>form</managed-bean-name>
+        <managed-bean-class>org.example.beans.FormBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+        <managed-property>
+            <property-name>results</property-name>
+            <value>#{results}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>settings</property-name>
+            <value>#{settings}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>checkResultService</property-name>
+            <value>#{checkResultService}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>checkResultService</managed-bean-name>
+        <managed-bean-class>org.example.service.CheckResultService</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <property-name>jpaService</property-name>
+            <value>#{jpaService}</value>
+        </managed-property>
+    </managed-bean>
+
+    <validator>
+        <validator-id>yValidator</validator-id>
+        <validator-class>org.example.validator.YValidator</validator-class>
+    </validator>
+
+</faces-config>

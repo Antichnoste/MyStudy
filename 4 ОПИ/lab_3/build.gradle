@@ -1,0 +1,139 @@
+
+//gradle compile    — скомпилирует проект.
+//gradle build      — скомпилирует и соберет JAR/WAR.
+//gradle clean      — очистит папку build.
+//gradle test       — сначала вызовет build, а потом прогонит тесты.
+//gradle music      — соберет проект и издаст «бип».
+//gradle alt        — берет из build.properties то что исщем и то что заменяем, меняем это и делаем build
+
+plugins {
+    id 'java'
+    id 'war'
+    id "com.dorongold.task-tree" version "4.0.0" 
+}
+
+group = 'org.example'
+version = '1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'javax.enterprise:cdi-api:2.0.SP1'
+    implementation 'org.jboss.weld.servlet:weld-servlet-core:3.1.9.Final'
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+    implementation 'javax.transaction:javax.transaction-api:1.3'
+    implementation 'org.postgresql:postgresql:42.7.3'
+    implementation 'org.eclipse.persistence:eclipselink:2.7.12'
+    implementation 'org.primefaces:primefaces:7.0'
+    implementation 'org.glassfish:javax.faces:2.3.8'
+
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+}
+
+jar {
+    archiveBaseName = 'web3'
+    manifest {
+        attributes 'Main-Class': 'org.example.Lab3'
+    }
+}
+
+war {
+    archiveBaseName = 'web3'
+}
+
+//COMPILE
+task compile{
+    group = 'lab'
+    dependsOn 'classes' 
+}
+
+// BUILD
+tasks.named('build') {
+    group = 'lab'
+    dependsOn 'compile'
+}
+
+// TEST
+tasks.named('test') {
+    dependsOn 'jar'
+    group = 'lab'
+}
+
+// CLEAN
+tasks.named('clean') {
+    group = 'lab'
+}
+
+// MUSIC
+task music {
+    dependsOn build
+    group = 'lab'
+
+    outputs.upToDateWhen { false }
+    
+    doLast{
+        java.awt.Toolkit.getDefaultToolkit().beep()
+    }
+}
+
+// ALT
+def altProps = new Properties()
+
+task loadAltProperties {
+    doLast {
+        def propFile = file('build.properties')
+        propFile.withInputStream { altProps.load(it) }
+    }
+}
+
+task prepareAltSources(type: Copy) {
+    dependsOn loadAltProperties
+    from 'src/main/java'
+    into "$buildDir/alt-src/java"
+
+    outputs.dir("$buildDir/alt-src/java")
+
+    doFirst {
+        def regex = altProps.getProperty('alt.regex')
+        def replacement = altProps.getProperty('alt.replacement')
+        
+        filter { line ->
+            line.replaceAll(regex, replacement)
+        }
+    }
+}
+
+task alt {
+    group = 'lab'
+
+    dependsOn 'build'
+}
+
+
+def runAlt = gradle.startParameter.taskNames.any { it == 'alt' || it.endsWith(':alt') }
+
+if (runAlt) {
+    tasks.named('compileJava', JavaCompile).configure {
+        source = fileTree("$buildDir/alt-src/java")
+        dependsOn prepareAltSources
+    }
+
+    tasks.withType(Jar).configureEach {
+        archiveAppendix = 'alt'
+    }
+}

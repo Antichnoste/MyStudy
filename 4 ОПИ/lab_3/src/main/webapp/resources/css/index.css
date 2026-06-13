@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.header {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.header-item {
+    flex: 1;
+    background: #3a3a3a;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 3px solid;
+}
+
+.header-item:nth-child(1) {
+    border-left-color: #4CAF50;
+}
+
+.header-item:nth-child(2) {
+    border-left-color: #2196F3;
+}
+
+.header-item:nth-child(3) {
+    border-left-color: #FF9800;
+}
+
+.header-label {
+    font-size: 0.9em;
+    color: #cccccc;
+    margin-bottom: 5px;
+}
+
+.header-value {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.clock-section {
+    background: #3a3a3a;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.clock-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #2d2d2d;
+    border: 5px solid #4CAF50;
+    position: relative;
+}
+
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+}
+
+.hour-hand {
+    width: 4px;
+    height: 25%;
+    background: #ffffff;
+    transform: translateX(-50%);
+}
+
+.minute-hand {
+    width: 3px;
+    height: 35%;
+    background: #4CAF50;
+    transform: translateX(-50%);
+}
+
+.second-hand {
+    width: 2px;
+    height: 40%;
+    background: #2196F3;
+    transform: translateX(-50%);
+}
+
+.digital-time {
+    margin-top: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    color: #4CAF50;
+    background: #2d2d2d;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.action-button {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background: #1976D2;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+h2 {
+    color: #cccccc;
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+
+    body {
+        margin: 10px;
+    }
+}

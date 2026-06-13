@@ -1,0 +1,206 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.login-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 320px;
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-card .form-group {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.login-card label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-card .btn-submit {
+  display: block;
+  width: 75%;
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.login-card .btn-submit {
+  margin: 20px auto 0 auto;
+}
+
+.toggle-auth {
+  margin-top: 15px;
+  color: #3498db;
+  cursor: pointer;
+  text-align: center;
+  display: block
+}
+.toggle-auth:hover {
+  text-decoration: underline;
+}
+
+.main-page-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.graph-section {
+  display: flex;
+  justify-content: center;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.coord-form-new {
+  background: white;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-group label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.input-group select,
+.input-group .input-y {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 80px;
+  text-align: center;
+}
+
+.radio-group-container {
+  display: flex;
+  gap: 15px;
+  padding: 8px 20px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 50px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.radio-label input {
+  cursor: pointer;
+  margin: 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.btn-submit, .btn-clear {
+  min-width: 120px;
+}
+
+.error-msg-center {
+  color: #c0392b;
+  font-weight: bold;
+  text-align: center;
+  background: #fadbd8;
+  padding: 8px 15px;
+  border-radius: 4px;
+
+  /*Убирает проблему с спецсимволами*/
+  white-space: pre-wrap;
+}
+
+.login-error-msg {
+  color: #c0392b;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+
+  white-space: pre-wrap; /* Учитывает \n и переносит строки */
+
+  background: #fadbd8;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.table-section {
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-group {
+    justify-content: space-between;
+  }
+
+  .radio-group-container {
+    justify-content: space-between;
+  }
+}

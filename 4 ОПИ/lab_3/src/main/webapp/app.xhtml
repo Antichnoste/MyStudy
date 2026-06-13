@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Лабораторная работа №3</title>
+    <h:outputStylesheet library="css" name="app.css"/>
+    <h:outputScript library="js" name="graph.js" target="body"/>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <h:form id="appForm">
+
+            <h2>Проверка попадания точки в область</h2>
+
+            <span id="graphErrorDisplay" style="color: #ff5252; font-weight: bold; display: block; margin-bottom: 15px;"></span>
+
+            <h:panelGroup id="graph" layout="block" styleClass="graph-wrap">
+
+                <svg id="graphSvg" width="420" height="420"
+                     data-center-x="210" data-center-y="210">
+
+                    <line x1="210" y1="10" x2="210" y2="410" stroke="white"/>
+                    <line x1="10" y1="210" x2="410" y2="210" stroke="white"/>
+
+                    <g id="ticks"></g>
+
+                    <g id="area" fill="#49a8ff" fill-opacity="0.95" stroke="none"></g>
+
+                    <g id="pointsLayer">
+                        <ui:repeat value="#{results.data}" var="p">
+                            <circle class="#{p.hit ? 'hit' : 'miss'}"
+                                    r="3"
+                                    data-x="#{p.x}" data-y="#{p.y}" data-r="#{p.r}"/>
+                        </ui:repeat>
+                    </g>
+
+                    <text x="395" y="205" font-size="12">x</text>
+                    <text x="215" y="20"  font-size="12">y</text>
+                </svg>
+            </h:panelGroup>
+
+            <div class="block">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <h:outputText value="X:"/><br/>
+                        <p:selectOneMenu id="x" value="#{form.x}" style="width:90%">
+                            <f:selectItems value="#{settings.XOptions}"/>
+                        </p:selectOneMenu>
+                        <p:message for="x"/>
+                    </div>
+
+                    <div class="input-group">
+                        <h:outputText value="Y (−5..3):"/><br/>
+                        <p:inputText id="y" value="#{form.y}" maxlength="12">
+                            <f:validator validatorId="yValidator"/>
+                            <p:ajax update="ymsg"/>
+                        </p:inputText>
+                        <p:message id="ymsg" for="y"/>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <h:outputText value="R:"/><br/>
+                        <p:selectOneRadio id="r" value="#{form.r}" layout="grid" columns="5">
+                            <f:selectItems value="#{settings.ROptions}"/>
+                            <p:ajax update="graph rValue" oncomplete="redrawAll();"/>
+                        </p:selectOneRadio>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <p:commandButton value="Проверить"
+                                     action="#{form.submit}"
+                                     update="@form"
+                                     oncomplete="redrawAll();"/>
+                    <p:commandButton value="На стартовую" action="toIndex"
+                                     styleClass="ui-button secondary"/>
+                </div>
+            </div>
+
+            <p:remoteCommand name="rcSendPoint"
+                             process="@form"
+                             action="#{form.submitFromGraph}"
+                             update="@form"
+                             oncomplete="redrawAll();">
+                <f:setPropertyActionListener target="#{form.graphX}" value="#{param.x}"/>
+                <f:setPropertyActionListener target="#{form.graphY}" value="#{param.y}"/>
+            </p:remoteCommand>
+
+            <h:inputHidden id="rValue" value="#{form.r}"/>
+
+            <h3>История проверок</h3>
+            <p:dataTable id="results" value="#{results.data}" var="row"
+                         scrollable="true" scrollHeight="260"
+                         styleClass="block" rowIndexVar="i">
+                <p:column headerText="№" style="width:4em">#{results.data.size() - i}</p:column>
+                <p:column headerText="X">#{row.x}</p:column>
+                <p:column headerText="Y">#{row.y}</p:column>
+                <p:column headerText="R">#{row.r}</p:column>
+                <p:column headerText="Попадание"><h:outputText value="#{row.hit ? 'Да' : 'Нет'}"/></p:column>
+                <p:column headerText="Время">#{row.formmatedCreatedAt()}</p:column>
+            </p:dataTable>
+
+        </h:form>
+    </div>
+</h:body>
+</html>

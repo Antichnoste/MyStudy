@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h2, h3 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.graph-wrap {
+    background: #3a3a3a;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#graphSvg {
+    background: #2d2d2d;
+    border-radius: 8px;
+    border: 2px solid #4a4a4a;
+}
+
+.hit {
+    fill: #4CAF50;
+}
+.miss {
+    fill: #f44336;
+}
+
+.block {
+    background-color: #3a3a3a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #4a4a4a;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.input-group {
+    background: #3a3a3a;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #4a4a4a;
+}
+
+.input-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.ui-selectonemenu,
+.ui-inputtext {
+    width: 100%;
+    background: #4a4a4a;
+    border: 1px solid #5a5a5a;
+    color: white;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.radio-group {
+    margin-top: 10px;
+}
+
+.button-group {
+    text-align: center;
+    padding: 15px;
+}
+
+.ui-button {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.ui-button.secondary {
+    background: #18d37f;
+}
+
+.ui-datatable {
+    background: #3a3a3a;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid #4a4a4a;
+}
+
+.ui-datatable .ui-datatable-header {
+    background: #4a4a4a;
+    color: white;
+    border: none;
+}
+
+.ui-datatable .ui-datatable-data tr {
+    background: #3a3a3a;
+    color: white;
+}
+
+.ui-datatable .ui-datatable-data tr:nth-child(even) {
+    background: #404040;
+}
+
+.ui-message {
+    color: #f44336;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+line {
+    stroke: #ffffff;
+}
+
+text {
+    fill: #ffffff;
+    font-size: 12px;
+}
+
+#area path {
+    stroke: #ffffff;
+    stroke-width: 1;
+}
+
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .ui-button {
+        margin: 5px 0;
+    }
+}

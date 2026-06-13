@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view encoding="UTF-8" locale="ru">
+<h:head>
+    <title>Лабораторная работа №3</title>
+    <h:outputStylesheet library="css" name="index.css"/>
+    <h:outputScript library="js" name="clock.js" target="body"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</h:head>
+<h:body>
+
+    <h1>Лабораторная работа №3</h1>
+
+    <div class="header">
+        <div class="header-item">
+            <div class="header-label">ФИО</div>
+            <div class="header-value"><h:outputText value="#{settings.studentFio}"/></div>
+        </div>
+
+        <div class="header-item">
+            <div class="header-label">Группа</div>
+            <div class="header-value"><h:outputText value="#{settings.group}"/></div>
+        </div>
+
+        <div class="header-item">
+            <div class="header-label">Вариант</div>
+            <div class="header-value"><h:outputText value="#{settings.variant}"/></div>
+        </div>
+    </div>
+
+    <div class="clock-section">
+        <h2>Текущее время</h2>
+        <div id="clock-container" data-period-sec="#{settings.clockPeriodSec}">
+            <div class="clock-container">
+                <div class="clock-face">
+                    <div class="hand hour-hand" id="hour-hand"></div>
+                    <div class="hand minute-hand" id="minute-hand"></div>
+                    <div class="hand second-hand" id="second-hand"></div>
+                    <div class="clock-center"></div>
+                </div>
+            </div>
+            <div class="digital-time" id="digital-time">Loading...</div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <h:form>
+            <h:commandButton value="Перейти к приложению" styleClass="action-button" action="toApp"/>
+        </h:form>
+    </div>
+
+</h:body>
+</f:view>
+</html>

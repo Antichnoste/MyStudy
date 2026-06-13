@@ -52,3 +52,4 @@ coverage/
 *.sln.docstates
 
 "3 Языки програмирования/"
+.vscode/
