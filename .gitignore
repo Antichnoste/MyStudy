@@ -51,5 +51,8 @@ coverage/
 *.userosscache
 *.sln.docstates
 
-"3 Языки програмирования/"
+3 Языки програмирования/
 .vscode/
+
+4 ОПИ/рубежка/*
+!4 ОПИ/рубежка/exercise.pdf
