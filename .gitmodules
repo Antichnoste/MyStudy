@@ -22,3 +22,9 @@
 [submodule "3-4 Физика/4 сем/Проект"]
 	path = 3-4 Физика/4 сем/Проект
 	url = git@github.com:Antichnoste/Physics_Project.git
+
+#Курс по Архитектуре Компьютера	
+[submodule "4 АК/lab_4"]
+	path = 4 АК/lab_4
+	url = git@github.com:Antichnoste/csa-lab4.git
+	branch = cheat-sheets

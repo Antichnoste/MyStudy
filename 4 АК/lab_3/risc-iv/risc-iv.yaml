@@ -1,0 +1,17 @@
+name: hello_user_cstr
+limit: 4000
+memory_size: 0x1000
+memory_mapped_io:
+  0x80: ["Paul\n"]
+  0x84: []
+reports:
+  - name: Step-by-step
+    slice: ["head", 50]
+    view: |
+      {pc}: {instruction}	{pc:label}
+  - name: Result
+    slice: last
+    view: |
+      symio[0x84]: {io:0x84:sym}
+    assert: |
+      symio[0x84]: "" >>> "What is your name?\nHello, Paul!"

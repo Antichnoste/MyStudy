@@ -1,0 +1,23 @@
+name: rle_compress
+limit: 4000
+memory_size: 0x1000
+memory_mapped_io:
+  0x80: ["AAABBBBCCCC\n"]
+  0x84: []
+reports:
+  - name: Step-by-step
+    slice: ["head", 1000]
+    view: |
+      {pc}:	{instruction}	{pc:label}
+  - name: Result
+    slice: last
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+      symio[0x80]: {io:0x80:sym}
+      symio[0x84]: {io:0x84:sym}
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [51,65,52,66,52,67]
+      symio[0x80]: "" >>> ""
+      symio[0x84]: "" >>> "3A4B4C"
